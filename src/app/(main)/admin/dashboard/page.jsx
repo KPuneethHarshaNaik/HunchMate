@@ -684,12 +684,18 @@ export default function AdminDashboard() {
 
   const heroHighlights = useMemo(() => {
     const metrics = overview?.metrics || {}
+    const roleCounts = metrics.roleCounts || {}
+    const draftCount = events.filter((e) => (e?.status || '').toLowerCase() === 'draft').length
+    const publishedCount = events.filter((e) => (e?.status || '').toLowerCase() !== 'draft').length
+
     return [
-      { label: 'Users', value: metrics.totalUsers ?? 0 },
-      { label: 'Events', value: metrics.totalEvents ?? 0 },
-      { label: 'Complaints', value: metrics.openComplaints ?? 0 },
+      { label: 'Total Organizers', value: roleCounts.organizer ?? 0 },
+      { label: 'Total Events', value: metrics.totalEvents ?? 0 },
+      { label: 'Published Events', value: publishedCount },
+      { label: 'Draft Events', value: draftCount },
+      { label: 'Total Participant Accounts', value: roleCounts.participant ?? 0 },
     ]
-  }, [overview])
+  }, [overview, events])
 
   const chartCommonOptions = {
     responsive: true,

@@ -79,9 +79,28 @@
 
 .admin-dashboard__hero-stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.65rem;
 }
+
+@media (max-width: 1024px) {
+  .admin-dashboard__hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard__hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-dashboard__hero-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .admin-dashboard__hero-chip {
   border: 1px solid #e2e8f0;
